@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowRight } from "lucide-react";
+import profileImage from "@/assets/profile.png";
 
 const Hero = () => {
   return (
@@ -71,10 +72,9 @@ const Hero = () => {
               
               {/* Image container */}
               <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10" />
                 <img 
-                  src="/placeholder.svg" 
-                  alt="Sanchit Garg"
+                  src={profileImage} 
+                  alt="Sanchit Garg - AI Student & Product Strategist"
                   className="w-full h-full object-cover"
                 />
               </div>

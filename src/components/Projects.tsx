@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { Github, ArrowRight } from "lucide-react";
 
 const projects = [
   {
@@ -12,8 +12,7 @@ const projects = [
     approach: "Built asynchronous scraping pipeline with sentiment analysis models",
     outcome: "Successfully visualized sentiment trends correlating with price movements",
     links: {
-      github: "#",
-      demo: "#"
+      github: "#"
     }
   },
   {
@@ -25,8 +24,7 @@ const projects = [
     approach: "Implemented Brute Force, Nearest Neighbour, Clarke-Wright, Simulated Annealing, and Genetic Algorithm approaches",
     outcome: "Interactive demo showcasing comparative performance of different algorithms",
     links: {
-      github: "#",
-      demo: "#"
+      github: "#"
     }
   },
   {
@@ -99,22 +97,15 @@ const Projects = () => {
                 </div>
               </div>
               
-              <div className="flex gap-2 mt-6 pt-4 border-t border-border">
-                {project.links.github && (
-                  <Button variant="outline" size="sm" className="flex-1 group/btn">
+              {project.links.github && (
+                <div className="mt-6 pt-4 border-t border-border">
+                  <Button variant="outline" size="sm" className="w-full group/btn">
                     <Github className="h-4 w-4 mr-2" />
-                    Code
+                    View Code
                     <ArrowRight className="ml-auto h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
-                )}
-                {project.links.demo && (
-                  <Button variant="outline" size="sm" className="flex-1 group/btn">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Demo
-                    <ArrowRight className="ml-auto h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                )}
-              </div>
+                </div>
+              )}
             </Card>
           ))}
         </div>
