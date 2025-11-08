@@ -27,17 +27,24 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log('Submitting form with data:', formData);
+
     try {
-      await emailjs.send(
+      const result = await emailjs.send(
         'service_mkqu5m7',
         'template_l6117o5',
         {
+          user_name: formData.name,
+          user_email: formData.email,
+          message: formData.message,
           from_name: formData.name,
           from_email: formData.email,
-          message: formData.message,
+          reply_to: formData.email,
         },
         'FKgCezasUzqsngMIg'
       );
+
+      console.log('EmailJS Success:', result);
 
       toast({
         title: "Message sent!",
@@ -45,10 +52,12 @@ const Contact = () => {
       });
 
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
+    } catch (error: any) {
+      console.error('EmailJS Error:', error);
+      
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error?.text || "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
