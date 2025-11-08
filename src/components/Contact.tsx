@@ -3,8 +3,59 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { useState } from "react";
+import emailjs from '@emailjs/browser';
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        'service_mkqu5m7',
+        'template_l6117o5',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        'FKgCezasUzqsngMIg'
+      );
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for contacting me. I'll get back to you soon!",
+      });
+
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 px-4 bg-secondary/30">
       <div className="container mx-auto max-w-6xl">
@@ -19,35 +70,47 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* Contact Form */}
           <Card className="p-8 bg-card border-border">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Name</label>
                 <Input 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Your name"
                   className="bg-secondary border-border focus:border-primary"
+                  required
                 />
               </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-medium">Email</label>
                 <Input 
+                  name="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="your.email@example.com"
                   className="bg-secondary border-border focus:border-primary"
+                  required
                 />
               </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-medium">Message</label>
                 <Textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Tell me about your project or idea..."
                   rows={5}
                   className="bg-secondary border-border focus:border-primary resize-none"
+                  required
                 />
               </div>
               
-              <Button className="w-full" size="lg">
-                Send Message
+              <Button className="w-full" size="lg" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Card>
