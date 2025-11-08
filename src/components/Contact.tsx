@@ -133,7 +133,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p className="text-sm text-muted-foreground">sanchit@example.com</p>
+                  <p className="text-sm text-muted-foreground">b23cy1019@iitj.ac.in</p>
                 </div>
               </div>
             </Card>
@@ -168,7 +168,7 @@ const Contact = () => {
                 <Button 
                   variant="outline" 
                   className="justify-start group"
-                  onClick={() => window.open('mailto:sanchit@example.com', '_blank')}
+                  onClick={() => window.open('mailto:b23cy1019@iitj.ac.in', '_blank')}
                 >
                   <Mail className="h-5 w-5 mr-2 group-hover:text-primary transition-colors" />
                   Email
@@ -178,9 +178,9 @@ const Contact = () => {
             
             <Card className="p-6 bg-primary/10 border-primary/30">
               <p className="text-sm text-center">
-                <span className="text-muted-foreground">Prefer email?</span>
+                <span className="text-muted-foreground">Personal email</span>
                 <br />
-                <span className="font-semibold">sanchit@example.com</span>
+                <span className="font-semibold">sanchitgarg343@gmail.com</span>
               </p>
             </Card>
           </div>
