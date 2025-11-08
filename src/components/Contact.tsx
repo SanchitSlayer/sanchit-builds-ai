@@ -141,19 +141,35 @@ const Contact = () => {
             <Card className="p-8 bg-card border-border">
               <h3 className="font-semibold mb-4">Connect on Social</h3>
               <div className="grid grid-cols-2 gap-3">
-                <Button variant="outline" className="justify-start group">
+                <Button 
+                  variant="outline" 
+                  className="justify-start group"
+                  onClick={() => window.open('https://github.com/SanchitSlayer', '_blank')}
+                >
                   <Github className="h-5 w-5 mr-2 group-hover:text-primary transition-colors" />
                   GitHub
                 </Button>
-                <Button variant="outline" className="justify-start group">
+                <Button 
+                  variant="outline" 
+                  className="justify-start group"
+                  onClick={() => window.open('https://www.linkedin.com/in/sanchit-garg-791921286/', '_blank')}
+                >
                   <Linkedin className="h-5 w-5 mr-2 group-hover:text-primary transition-colors" />
                   LinkedIn
                 </Button>
-                <Button variant="outline" className="justify-start group">
+                <Button 
+                  variant="outline" 
+                  className="justify-start group"
+                  onClick={() => window.open('https://twitter.com', '_blank')}
+                >
                   <Twitter className="h-5 w-5 mr-2 group-hover:text-primary transition-colors" />
                   Twitter
                 </Button>
-                <Button variant="outline" className="justify-start group">
+                <Button 
+                  variant="outline" 
+                  className="justify-start group"
+                  onClick={() => window.open('mailto:sanchit@example.com', '_blank')}
+                >
                   <Mail className="h-5 w-5 mr-2 group-hover:text-primary transition-colors" />
                   Email
                 </Button>
