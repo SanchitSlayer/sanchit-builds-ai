@@ -2,12 +2,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, FileText } from "lucide-react";
 import maternalHealthCover from "@/assets/decks/maternal-health-risk-cover.jpg";
+import blusmartCover from "@/assets/decks/blusmart-cover.jpg";
 
 interface Deck {
   title: string;
   description: string;
   coverImage: string;
   downloadUrl: string;
+  viewUrl: string;
   type: "pitch" | "case-study" | "project";
 }
 
@@ -17,7 +19,16 @@ const decks: Deck[] = [
     description: "Machine Learning project analyzing maternal health risk factors using KNN, Random Forest, and SVM classifiers.",
     coverImage: maternalHealthCover,
     downloadUrl: "/decks/MATERNAL_HEALTH_RISK.pptx",
+    viewUrl: "https://docs.google.com/presentation/d/1v0zyfCliJN41efkwgOgC9H5tSpwRPzi9/edit?slide=id.p1#slide=id.p1",
     type: "project",
+  },
+  {
+    title: "BluSmart Mobility - Product Teardown",
+    description: "Product teardown and analysis of BluSmart, India's leading all-electric ride-sharing company with premium EV fleet.",
+    coverImage: blusmartCover,
+    downloadUrl: "/decks/Blusmart.pptx",
+    viewUrl: "https://docs.google.com/presentation/d/1ZoPg859M2dBU0DnOXQ8_WPOqJkPZjo9D/edit?usp=sharing&ouid=106754144357812763211&rtpof=true&sd=true",
+    type: "case-study",
   },
 ];
 
@@ -73,7 +84,7 @@ const Decks = () => {
                   <Button
                     size="sm"
                     className="flex-1"
-                    onClick={() => window.open(deck.downloadUrl, '_blank')}
+                    onClick={() => window.open(deck.viewUrl, '_blank')}
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View
