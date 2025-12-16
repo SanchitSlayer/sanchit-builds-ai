@@ -23,7 +23,7 @@ const decks: Deck[] = [
     type: "project",
   },
   {
-    title: "BluSmart Mobility - Product Teardown",
+    title: "BluSmart - Product Teardown",
     description: "Product teardown and analysis of BluSmart, India's leading all-electric ride-sharing company with premium EV fleet.",
     coverImage: blusmartCover,
     downloadUrl: "/decks/Blusmart.pptx",

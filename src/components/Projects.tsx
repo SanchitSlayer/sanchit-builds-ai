@@ -12,7 +12,7 @@ const projects = [
     approach: "Built asynchronous scraping pipeline with sentiment analysis models",
     outcome: "Successfully visualized sentiment trends correlating with price movements",
     links: {
-      github: "#"
+      github: "https://github.com/aman2810-jsr/crypto_sentiment"
     }
   },
   {
@@ -24,7 +24,7 @@ const projects = [
     approach: "Implemented Brute Force, Nearest Neighbour, Clarke-Wright, Simulated Annealing, and Genetic Algorithm approaches",
     outcome: "Interactive demo showcasing comparative performance of different algorithms",
     links: {
-      github: "#"
+      github: "https://github.com/itschiru3301/Vehicle_Routing_Optimization"
     }
   },
   {
@@ -36,7 +36,7 @@ const projects = [
     approach: "Combined RNN deep learning with Naive Bayes using advanced NLP vectorization",
     outcome: "Achieved high accuracy with comparative model analysis",
     links: {
-      github: "#"
+      github: "https://github.com/SanchitSlayer/Maternal-Health-Risk"
     }
   }
 ];
