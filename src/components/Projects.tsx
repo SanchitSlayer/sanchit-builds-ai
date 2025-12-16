@@ -99,7 +99,12 @@ const Projects = () => {
               
               {project.links.github && (
                 <div className="mt-6 pt-4 border-t border-border">
-                  <Button variant="outline" size="sm" className="w-full group/btn">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full group/btn"
+                    onClick={() => window.open(project.links.github, '_blank')}
+                  >
                     <Github className="h-4 w-4 mr-2" />
                     View Code
                     <ArrowRight className="ml-auto h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
