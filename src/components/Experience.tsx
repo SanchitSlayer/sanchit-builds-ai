@@ -3,6 +3,19 @@ import { Briefcase, Users } from "lucide-react";
 
 const experiences = [
   {
+    title: "Product Management Intern",
+    company: "Gumbo Tech",
+    badge: "Ongoing",
+    period: "Jan 2026 — Present",
+    icon: Briefcase,
+    responsibilities: [
+      "Driving product strategy and roadmap development",
+      "Collaborating with cross-functional teams on product initiatives",
+      "Conducting market research and competitive analysis",
+      "Contributing to product feature prioritization and planning"
+    ]
+  },
+  {
     title: "Growth Intern",
     company: "Inventive AI",
     badge: "YC S23",
