@@ -8,6 +8,54 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 220 18% 10%;
+
+    --card: 0 0% 97%;
+    --card-foreground: 220 18% 10%;
+
+    --popover: 0 0% 97%;
+    --popover-foreground: 220 18% 10%;
+
+    --primary: 174 72% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 18% 10%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 215 20% 40%;
+
+    --accent: 174 72% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 174 72% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom portfolio tokens */
+    --accent-glow: 174 72% 50%;
+    --surface-elevated: 0 0% 95%;
+    --text-muted: 215 20% 40%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(174 72% 40%), hsl(174 72% 30%));
+    --gradient-hero: linear-gradient(135deg, hsl(174 72% 40% / 0.1), hsl(174 72% 40% / 0));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(174 72% 40% / 0.2);
+    --shadow-card: 0 10px 40px hsl(220 18% 50% / 0.1);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
     --background: 220 18% 6%;
     --foreground: 210 40% 98%;
 
@@ -35,8 +83,6 @@ All colors MUST be HSL.
     --border: 220 15% 20%;
     --input: 220 15% 20%;
     --ring: 174 72% 56%;
-
-    --radius: 0.75rem;
 
     /* Custom portfolio tokens */
     --accent-glow: 174 72% 65%;
