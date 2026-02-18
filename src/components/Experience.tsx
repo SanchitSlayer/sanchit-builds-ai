@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { Briefcase, Users } from "lucide-react";
+import { Briefcase, Users, Trophy } from "lucide-react";
+import interIitPhoto from "@/assets/inter-iit.jpeg";
 
 const experiences = [
   {
@@ -26,6 +27,19 @@ const experiences = [
       "Secured significant deals and partnerships",
       "Collaborated with product & BD teams to refine GTM strategy",
       "Analyzed user behavior to optimize conversion funnels"
+    ]
+  },
+  {
+    title: "Inter IIT Tech Meet 14.0",
+    company: "Jilo Health — IIT Patna",
+    badge: "9th / 23 IITs",
+    period: "2025",
+    icon: Trophy,
+    image: interIitPhoto,
+    responsibilities: [
+      "Built an end-to-end MVP (mobile + cloud) that captures face & eye images and uses multimodal AI to screen for 50+ health conditions",
+      "Led product — defined signal-capture flows, elderly-first UX, and the mobile→cloud inference pipeline",
+      "Placed 9th out of 23 IIT teams in the Inter-IIT challenge for the Jilo Health problem statement"
     ]
   },
   {
@@ -77,6 +91,16 @@ const Experience = () => {
                     <p className="text-sm text-muted-foreground">{exp.period}</p>
                   </div>
                   
+                  {exp.image && (
+                    <div className="mb-4 rounded-lg overflow-hidden border border-border">
+                      <img 
+                        src={exp.image} 
+                        alt={exp.title} 
+                        className="w-full h-48 md:h-56 object-cover"
+                      />
+                    </div>
+                  )}
+
                   <ul className="space-y-2">
                     {exp.responsibilities.map((resp, i) => (
                       <li key={i} className="flex items-start gap-2 text-muted-foreground">
