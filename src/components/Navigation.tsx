@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -62,6 +63,7 @@ const Navigation = () => {
                   {link.label}
                 </button>
               ))}
+              <ThemeToggle />
             </div>
 
             {/* Mobile Menu Button */}

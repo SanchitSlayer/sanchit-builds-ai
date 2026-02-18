@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, FileText } from "lucide-react";
 import maternalHealthCover from "@/assets/decks/maternal-health-risk-cover.jpg";
-import blusmartCover from "@/assets/decks/blusmart-cover.jpg";
+import blusmartCover from "@/assets/decks/blusmart-cover-new.png";
 
 interface Deck {
   title: string;
