@@ -49,7 +49,7 @@ const About = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Current Role:</span>
-                  <span className="text-foreground">Product Club Coordinator</span>
+                  <span className="text-foreground">Product Intern @ Gumbo Tech</span>
                 </div>
               </div>
             </Card>
