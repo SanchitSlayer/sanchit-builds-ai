@@ -60,7 +60,7 @@ const About = () => {
                 Tech Stack
               </h3>
               <div className="flex flex-wrap gap-2">
-                {["Python", "scikit-learn", "Pandas", "NumPy", "React", "Next.js", "MongoDB", "Git", "Jupyter", "Power BI"].map((tech) => (
+                {["Python", "C", "C++", "scikit-learn", "Pandas", "NumPy", "React", "Next.js", "Django", "SQL", "MongoDB", "Git", "Jupyter", "Power BI", "Tableau"].map((tech) => (
                   <span 
                     key={tech}
                     className="px-3 py-1 bg-secondary rounded-full text-sm border border-border hover:border-primary/50 transition-colors"
