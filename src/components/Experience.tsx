@@ -96,7 +96,7 @@ const Experience = () => {
                       <img 
                         src={exp.image} 
                         alt={exp.title} 
-                        className="w-full h-48 md:h-56 object-cover object-top"
+                        className="w-full h-64 md:h-80 object-cover object-[center_20%]"
                       />
                     </div>
                   )}
