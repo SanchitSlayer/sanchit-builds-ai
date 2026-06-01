@@ -4,10 +4,22 @@ import interIitPhoto from "@/assets/inter-iit.jpeg";
 
 const experiences = [
   {
+    title: "Product Analyst Intern",
+    company: "OneMetric — Gurgaon",
+    badge: "Internship",
+    period: "May 2026 — June 2026",
+    icon: Briefcase,
+    responsibilities: [
+      "GTM Strategy (US & EU): Designed the go-to-market approach for US and European B2B clients — defined Ideal Customer Profiles and buyer personas, segmented target verticals, and mapped market-entry sequencing and outbound playbooks",
+      "AI Sales Agent: Built an AI agent to automate the sales team's lead qualification and outbound workflows, integrating CRM and data-enrichment tools to reduce manual prospecting effort and surface higher-intent leads",
+      "Business Operations & Insights: Defined lead-qualification workflows and KPI dashboards to track pipeline health, translating funnel data into positioning and feature-prioritization recommendations"
+    ]
+  },
+  {
     title: "Product Management Intern",
     company: "Gumbo Tech",
-    badge: "Ongoing",
-    period: "Jan 2026 — Present",
+    badge: "Internship",
+    period: "Jan 2026 — March 2026",
     icon: Briefcase,
     responsibilities: [
       "Driving product strategy and roadmap development",
