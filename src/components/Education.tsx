@@ -6,7 +6,7 @@ const educationData = [
     degree: "BS Chemistry (Specialization)",
     institution: "IIT Jodhpur",
     period: "Aug 2023 — May 2027 (expected)",
-    cgpa: "7.5",
+    cgpa: "7.4",
     highlights: ["Data Structures & Algorithms", "Machine Learning", "Signals & Systems"]
   },
   {
