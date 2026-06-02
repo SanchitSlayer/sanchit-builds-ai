@@ -56,9 +56,9 @@ const experiences = [
   },
   {
     title: "Overall Coordinator",
-    company: "The Product Club",
+    company: "OneMetric — Gurgaon",
     badge: "Leadership",
-    period: "Present",
+    period: "Aug 2025 — April 2026",
     icon: Users,
     responsibilities: [
       "Led a community of product-minded students",
