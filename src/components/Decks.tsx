@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, FileText } from "lucide-react";
 import maternalHealthCover from "@/assets/decks/maternal-health-risk-cover.jpg";
 import blusmartCover from "@/assets/decks/blusmart-cover-new.png";
-import elchemyCover from "@/assets/decks/elchemy-cover.png.asset.json";
+import elchemyCover from "@/assets/decks/elchemy-cover.webp";
 
 interface Deck {
   title: string;
@@ -34,7 +34,7 @@ const decks: Deck[] = [
   {
     title: "Elchemy - Case Study",
     description: "Case study on Elchemy's leadership DNA — where supply chain mastery meets elite engineering to build high-margin, high-trust cross-border fulfillment.",
-    coverImage: elchemyCover.url,
+    coverImage: elchemyCover,
     viewUrl: "https://www.canva.com/design/DAHFgzlTk_4/9dAwRKwGnURF7_K0bHcpdA/edit",
     type: "case-study",
   },
