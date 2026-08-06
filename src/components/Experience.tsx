@@ -7,12 +7,13 @@ const experiences = [
     title: "Product Analyst Intern",
     company: "OneMetric — Gurgaon",
     badge: "Internship",
-    period: "May 2026 — June 2026",
+    period: "May 2026 — July 2026",
     icon: Briefcase,
     responsibilities: [
-      "GTM Strategy (US & EU): Designed the go-to-market approach for US and European B2B clients — defined Ideal Customer Profiles and buyer personas, segmented target verticals, and mapped market-entry sequencing and outbound playbooks",
-      "AI Sales Agent: Built an AI agent to automate the sales team's lead qualification and outbound workflows, integrating CRM and data-enrichment tools to reduce manual prospecting effort and surface higher-intent leads",
-      "Business Operations & Insights: Defined lead-qualification workflows and KPI dashboards to track pipeline health, translating funnel data into positioning and feature-prioritization recommendations"
+      "Designed and developed an AI-powered intent analyzer for a B2B sales team, enhancing lead prioritization",
+      "Engineered a KYC application using OCR and AI to automate customer verification, significantly reducing manual workload",
+      "Achieved a 60% reduction in time spent on lead qualification and a 70% decrease in onboarding delays",
+      "Contributed to OneMetric's mission of leveraging technology to streamline business processes in a fast-paced startup environment"
     ]
   },
   {
