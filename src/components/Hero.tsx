@@ -57,7 +57,7 @@ const Hero = () => {
                 size="lg" 
                 variant="outline"
                 className="group"
-                onClick={() => window.open('https://drive.google.com/file/d/12Pz0Glefw-k1F_PNS-Vki5BSAxv_NWVg/view?usp=sharing', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1Wc-xHjlxF1nEV2uWUdRdWO43pPnzav5u/view?usp=sharing', '_blank')}
               >
                 <Download className="mr-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
                 Download Resume
