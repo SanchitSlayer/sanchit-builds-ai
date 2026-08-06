@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, FileText } from "lucide-react";
 import maternalHealthCover from "@/assets/decks/maternal-health-risk-cover.jpg";
 import blusmartCover from "@/assets/decks/blusmart-cover-new.png";
+import elchemyCover from "@/assets/decks/elchemy-cover.png.asset.json";
 
 interface Deck {
   title: string;
   description: string;
   coverImage: string;
-  downloadUrl: string;
+  downloadUrl?: string;
   viewUrl: string;
   type: "pitch" | "case-study" | "project";
 }
@@ -28,6 +29,13 @@ const decks: Deck[] = [
     coverImage: blusmartCover,
     downloadUrl: "/decks/Blusmart.pptx",
     viewUrl: "https://docs.google.com/presentation/d/1ZoPg859M2dBU0DnOXQ8_WPOqJkPZjo9D/edit?usp=sharing&ouid=106754144357812763211&rtpof=true&sd=true",
+    type: "case-study",
+  },
+  {
+    title: "Elchemy - Case Study",
+    description: "Case study on Elchemy's leadership DNA — where supply chain mastery meets elite engineering to build high-margin, high-trust cross-border fulfillment.",
+    coverImage: elchemyCover.url,
+    viewUrl: "https://www.canva.com/design/DAHFgzlTk_4/9dAwRKwGnURF7_K0bHcpdA/edit",
     type: "case-study",
   },
 ];
@@ -72,15 +80,17 @@ const Decks = () => {
                 </p>
                 
                 <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1"
-                    onClick={() => window.open(deck.downloadUrl, '_blank')}
-                  >
-                    <FileText className="w-4 h-4 mr-2" />
-                    Download
-                  </Button>
+                  {deck.downloadUrl && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => window.open(deck.downloadUrl, '_blank')}
+                    >
+                      <FileText className="w-4 h-4 mr-2" />
+                      Download
+                    </Button>
+                  )}
                   <Button
                     size="sm"
                     className="flex-1"
