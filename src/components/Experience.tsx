@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Briefcase, Users, Trophy } from "lucide-react";
 import interIitPhoto from "@/assets/inter-iit.jpeg";
+import oneMetricPhoto from "@/assets/onemetric-internship.webp";
 
 const experiences = [
   {
@@ -9,6 +10,7 @@ const experiences = [
     badge: "Internship",
     period: "May 2026 — July 2026",
     icon: Briefcase,
+    image: oneMetricPhoto,
     responsibilities: [
       "Designed and developed an AI-powered intent analyzer for a B2B sales team, enhancing lead prioritization",
       "Engineered a KYC application using OCR and AI to automate customer verification, significantly reducing manual workload",
