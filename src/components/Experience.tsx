@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Briefcase, Users, Trophy } from "lucide-react";
 import interIitPhoto from "@/assets/inter-iit.jpeg";
+import oneMetricPhoto from "@/assets/onemetric-internship.webp";
 
 const experiences = [
   {
