@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { caseStudies, findCaseStudy, type Image } from "@/content/caseStudies";
+import { SITE_URL } from "@/content/site";
 import Container from "@/components/ui/Container";
 import UserFlow from "@/components/casestudy/UserFlow";
 import WireframePhone from "@/components/casestudy/WireframePhone";
@@ -64,6 +65,7 @@ export default function CaseStudy() {
       <Helmet>
         <title>{`${study.title} | Case study | Sanchit Garg`}</title>
         <meta name="description" content={study.summary} />
+        <link rel="canonical" href={`${SITE_URL}/work/${study.slug}`} />
       </Helmet>
 
       <Container>

@@ -1,5 +1,9 @@
 // Site-wide facts. Edit text here, not inside components.
 
+// Change this one value if the site moves to a custom domain (also update index.html,
+// public/robots.txt and public/sitemap.xml).
+export const SITE_URL = "https://sanchit-portfolio-blue.vercel.app";
+
 export const site = {
   name: "Sanchit Garg",
   initials: "SG",

@@ -12,7 +12,8 @@
   --color-line-strong: #343a44;
   --color-text: #e8eaed;
   --color-muted: #a1a9b3;
-  --color-subtle: #6f7884;
+  /* Faintest text colour; still passes 4.5:1 contrast on every background above */
+  --color-subtle: #828b97;
   --color-accent: #2dd4bf;
   --color-accent-strong: #5eead4;
   --color-accent-ink: #042f2a;

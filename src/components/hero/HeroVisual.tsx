@@ -1,7 +1,7 @@
 import { Component, Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { Box, X } from "lucide-react";
 import MoleculeStatic from "./MoleculeStatic";
-import { detectSupport, startsIn3D, type Support } from "./deviceSupport";
+import { canCreateWebGL, detectSupport, startsIn3D, type Support } from "./deviceSupport";
 
 // The 3D code (three.js and friends) is a separate download, fetched only when it is shown.
 const Molecule3D = lazy(() => import("./three/Molecule3D"));
@@ -37,18 +37,17 @@ const ALT =
 
 export default function HeroVisual() {
   const wrapper = useRef<HTMLDivElement>(null);
-  const [support, setSupport] = useState<Support | null>(null);
+  // Cheap checks only, so they can run before the first paint and the layout never shifts.
+  const [support] = useState<Support>(detectSupport);
   const [show3D, setShow3D] = useState(false);
   const [optedIn, setOptedIn] = useState(false);
   const [ready, setReady] = useState(false);
   const [onScreen, setOnScreen] = useState(true);
 
-  // Check the device once, then load 3D after the page has finished its first paint.
+  // On capable devices, load 3D once the browser is idle after the first paint.
   useEffect(() => {
-    const s = detectSupport();
-    setSupport(s);
-    if (startsIn3D(s)) return whenIdle(() => setShow3D(true));
-  }, []);
+    if (startsIn3D(support)) return whenIdle(() => setShow3D(canCreateWebGL()));
+  }, [support]);
 
   // Pause the 3D scene while the hero is scrolled out of view.
   useEffect(() => {
@@ -60,7 +59,7 @@ export default function HeroVisual() {
   }, []);
 
   const scrollTo = (id: string) => {
-    const behavior = support?.reducedMotion ? "auto" : "smooth";
+    const behavior = support.reducedMotion ? "auto" : "smooth";
     document.getElementById(id)?.scrollIntoView({ behavior });
   };
 
@@ -70,9 +69,9 @@ export default function HeroVisual() {
     setOptedIn(false);
   };
 
-  const canOptIn = support?.webgl && !show3D;
+  const canOptIn = support.webgl && !show3D;
 
-  const hint = support?.touch ? "Drag to rotate. Tap an atom to jump there." : "Drag to rotate. Click an atom to jump there.";
+  const hint = support.touch ? "Drag to rotate. Tap an atom to jump there." : "Drag to rotate. Click an atom to jump there.";
 
   return (
     <div ref={wrapper}>
@@ -87,7 +86,7 @@ export default function HeroVisual() {
               <Suspense fallback={null}>
                 <Molecule3D
                   active={onScreen}
-                  reducedMotion={support?.reducedMotion ?? false}
+                  reducedMotion={support.reducedMotion}
                   onSelect={scrollTo}
                   onReady={() => setReady(true)}
                 />
@@ -98,7 +97,8 @@ export default function HeroVisual() {
       </div>
 
       {/* Hint and 3D toggle sit below the visual so they never cover an atom */}
-      {(ready || canOptIn) && (
+      {/* The row's height is always reserved so the caption does not jump when 3D appears */}
+      {support.webgl && (
         <div className="mt-2 flex min-h-11 items-center justify-between gap-3">
           <p aria-hidden className="font-mono text-[11px] text-subtle">
             {ready ? hint : ""}

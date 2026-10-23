@@ -8,10 +8,16 @@ export type Support = {
   touch: boolean;
 };
 
-function hasWebGL() {
+// Cheap: does the browser have WebGL at all? Used to decide whether to offer the 3D button.
+const webglAvailable = () => typeof WebGLRenderingContext !== "undefined";
+
+// Expensive (it spins up a real GPU context), so it only runs on devices about to start 3D.
+export function canCreateWebGL() {
   try {
     const canvas = document.createElement("canvas");
-    return Boolean(canvas.getContext("webgl2") ?? canvas.getContext("webgl"));
+    const gl = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
+    gl?.getExtension("WEBGL_lose_context")?.loseContext();
+    return Boolean(gl);
   } catch {
     return false;
   }
@@ -22,7 +28,7 @@ export function detectSupport(): Support {
   // Development only: ?motion=reduce or ?webgl=0 in the URL fakes those settings for testing.
   const force = import.meta.env.DEV ? new URLSearchParams(window.location.search) : null;
   return {
-    webgl: force?.get("webgl") === "0" ? false : hasWebGL(),
+    webgl: force?.get("webgl") === "0" ? false : webglAvailable(),
     reducedMotion: force?.get("motion") === "reduce" || window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     // Under 4 GB of memory or under 4 CPU cores counts as low-end.
     lowEnd: (nav.deviceMemory ?? 8) < 4 || (nav.hardwareConcurrency ?? 8) < 4,
