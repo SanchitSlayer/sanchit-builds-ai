@@ -8,6 +8,7 @@ import { atoms, bonds, kindHex, type Atom } from "@/content/molecule";
 const SCALE = 1 / 60;
 const BOND_RADIUS = 0.025;
 const UP = new THREE.Vector3(0, 1, 0);
+const CAMERA_Z = 11.2;
 
 const basePosition = (a: Atom) => new THREE.Vector3((a.x - 240) * SCALE, -(a.y - 240) * SCALE, a.z * 1.6);
 const radiusOf = (a: Atom) => a.size * SCALE * 0.85;
@@ -28,13 +29,15 @@ function Molecule({ reducedMotion, onSelect }: SceneProps) {
   const current = useMemo(() => atoms.map(() => new THREE.Vector3()), []);
   const scratch = useMemo(() => ({ dir: new THREE.Vector3(), mid: new THREE.Vector3() }), []);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     // Slow idle spin, paused while the reader is pointing at an atom.
     if (spin.current && !reducedMotion && !hovered) spin.current.rotation.y += delta * 0.12;
 
-    // Scrolling down pulls the atoms apart (up to 70% further from the centre).
-    const progress = Math.min(window.scrollY / (window.innerHeight * 0.9), 1);
-    const spread = 1 + (reducedMotion ? 0 : progress * 0.7);
+    // Scrolling down pulls the atoms apart (up to 35% further from the centre)
+    // while the camera eases back, so the molecule loosens without leaving the frame.
+    const progress = reducedMotion ? 0 : Math.min(window.scrollY / (window.innerHeight * 0.9), 1);
+    const spread = 1 + progress * 0.35;
+    state.camera.position.z = CAMERA_Z + progress * 2.6;
 
     atoms.forEach((a, i) => {
       current[i].copy(base[i]).multiplyScalar(spread);
@@ -89,6 +92,8 @@ function Molecule({ reducedMotion, onSelect }: SceneProps) {
               }}
               onClick={(e) => {
                 e.stopPropagation();
+                // A drag that ends on an atom is a rotation, not a click.
+                if (e.delta > 4) return;
                 setCursor("");
                 onSelect(a.section);
               }}
@@ -107,8 +112,18 @@ function Molecule({ reducedMotion, onSelect }: SceneProps) {
               <sphereGeometry args={[r, 24, 24]} />
               <meshBasicMaterial color={kindHex[a.kind]} transparent opacity={active ? 0.16 : 0.07} depthWrite={false} />
             </mesh>
-            <Html position={[0, -r - 0.22, 0]} center zIndexRange={[10, 0]} style={{ pointerEvents: "none" }}>
-              <div aria-hidden className="text-center whitespace-nowrap select-none">
+            <Html
+              position={[0, -r - 0.22, 0]}
+              center
+              zIndexRange={active ? [20, 20] : [10, 0]}
+              style={{ pointerEvents: "none" }}
+            >
+              <div
+                aria-hidden
+                className={`rounded bg-bg/70 px-1 text-center whitespace-nowrap transition-opacity select-none ${
+                  hovered && !active ? "opacity-25" : "opacity-100"
+                }`}
+              >
                 <p className={`font-mono text-[11px] ${active ? "text-text" : "text-muted"}`}>{a.label}</p>
                 {active && <p className="mt-0.5 font-mono text-[11px] text-accent-strong">{a.detail}</p>}
               </div>
@@ -133,10 +148,12 @@ export default function Molecule3D({ active, onReady, ...scene }: Props) {
       dpr={dpr}
       // Stop drawing entirely when the hero is off screen.
       frameloop={active ? "always" : "never"}
-      camera={{ position: [0, 0, 10.5], fov: 42 }}
+      camera={{ position: [0, 0, CAMERA_Z], fov: 42 }}
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       onCreated={() => requestAnimationFrame(onReady)}
       aria-hidden
+      // On touch screens, vertical swipes still scroll the page; sideways drags rotate.
+      style={{ touchAction: "pan-y" }}
     >
       {/* Drop to 1x resolution if the frame rate falls on a weaker GPU */}
       <PerformanceMonitor onDecline={() => setDpr(1)} />

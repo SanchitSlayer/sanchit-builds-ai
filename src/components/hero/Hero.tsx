@@ -38,7 +38,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <figure className="relative mx-auto aspect-square w-full max-w-[30rem]">
+        <figure className="mx-auto w-full max-w-[30rem]">
           <HeroVisual />
           <figcaption className="mt-2 text-center font-mono text-[11px] text-subtle">
             <span className="block">fig. 1, career as a molecule</span>

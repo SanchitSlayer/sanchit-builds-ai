@@ -5,6 +5,7 @@ export type Support = {
   reducedMotion: boolean;
   lowEnd: boolean;
   smallScreen: boolean;
+  touch: boolean;
 };
 
 function hasWebGL() {
@@ -18,12 +19,15 @@ function hasWebGL() {
 
 export function detectSupport(): Support {
   const nav = navigator as Navigator & { deviceMemory?: number };
+  // Development only: ?motion=reduce or ?webgl=0 in the URL fakes those settings for testing.
+  const force = import.meta.env.DEV ? new URLSearchParams(window.location.search) : null;
   return {
-    webgl: hasWebGL(),
-    reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    webgl: force?.get("webgl") === "0" ? false : hasWebGL(),
+    reducedMotion: force?.get("motion") === "reduce" || window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     // Under 4 GB of memory or under 4 CPU cores counts as low-end.
     lowEnd: (nav.deviceMemory ?? 8) < 4 || (nav.hardwareConcurrency ?? 8) < 4,
     smallScreen: window.matchMedia("(max-width: 767px)").matches,
+    touch: window.matchMedia("(pointer: coarse)").matches,
   };
 }
 

@@ -30,7 +30,7 @@ function whenIdle(fn: () => void) {
 }
 
 const toggleButton =
-  "absolute right-0 bottom-0 inline-flex min-h-11 items-center gap-2 rounded-full border border-line-strong bg-bg/80 px-4 text-sm text-muted backdrop-blur transition-colors hover:border-accent hover:text-accent-strong";
+  "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-line-strong bg-bg/80 px-4 text-sm text-muted backdrop-blur transition-colors hover:border-accent hover:text-accent-strong";
 
 const ALT =
   "Career map drawn as a molecule: OneMetric at the centre, bonded to the eKYC OCR tool, the intent analyzer, Inventive AI and the Placement Cell, with projects and leadership roles around them.";
@@ -72,9 +72,11 @@ export default function HeroVisual() {
 
   const canOptIn = support?.webgl && !show3D;
 
+  const hint = support?.touch ? "Drag to rotate. Tap an atom to jump there." : "Drag to rotate. Click an atom to jump there.";
+
   return (
-    <div ref={wrapper} className="relative h-full w-full">
-      <div role="img" aria-label={ALT} className="relative h-full w-full">
+    <div ref={wrapper}>
+      <div role="img" aria-label={ALT} className="relative aspect-square w-full">
         <div className={`h-full w-full transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}>
           <MoleculeStatic decorative />
         </div>
@@ -95,33 +97,30 @@ export default function HeroVisual() {
         )}
       </div>
 
-      {ready && (
-        <p aria-hidden className="pointer-events-none absolute top-0 left-0 font-mono text-[11px] text-subtle">
-          Drag to rotate. Click an atom to jump there.
-        </p>
-      )}
-
-      {canOptIn && (
-        <button
-          type="button"
-          onClick={() => {
-            setOptedIn(true);
-            setShow3D(true);
-          }}
-          className={toggleButton}
-        >
-          <Box size={16} aria-hidden /> Explore in 3D
-        </button>
-      )}
-
-      {optedIn && ready && (
-        <button
-          type="button"
-          onClick={close3D}
-          className={toggleButton}
-        >
-          <X size={16} aria-hidden /> Back to image
-        </button>
+      {/* Hint and 3D toggle sit below the visual so they never cover an atom */}
+      {(ready || canOptIn) && (
+        <div className="mt-2 flex min-h-11 items-center justify-between gap-3">
+          <p aria-hidden className="font-mono text-[11px] text-subtle">
+            {ready ? hint : ""}
+          </p>
+          {canOptIn && (
+            <button
+              type="button"
+              onClick={() => {
+                setOptedIn(true);
+                setShow3D(true);
+              }}
+              className={toggleButton}
+            >
+              <Box size={16} aria-hidden /> Explore in 3D
+            </button>
+          )}
+          {optedIn && ready && (
+            <button type="button" onClick={close3D} className={toggleButton}>
+              <X size={16} aria-hidden /> Back to image
+            </button>
+          )}
+        </div>
       )}
     </div>
   );
