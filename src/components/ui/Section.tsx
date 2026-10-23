@@ -12,9 +12,9 @@ type Props = {
 // Every main section shares this header: a mono index ("02"), a title and a one-line intro.
 export default function Section({ id, index, title, intro, children }: Props) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-line py-20 sm:py-28">
+    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-line py-16 sm:py-28">
       <Container>
-        <header className="mb-10 max-w-2xl sm:mb-14">
+        <header className="mb-8 max-w-2xl sm:mb-14">
           <p className="mb-3 font-mono text-xs tracking-widest text-accent uppercase">
             {index} / {title}
           </p>

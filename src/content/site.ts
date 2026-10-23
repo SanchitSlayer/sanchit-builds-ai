@@ -18,7 +18,7 @@ export type NavItem = { id: string; label: string };
 // Order here is the order of sections on the page.
 export const sections: NavItem[] = [
   { id: "about", label: "About" },
-  { id: "agents", label: "AI Agents" },
+  { id: "agents", label: "AI & Automation" },
   { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
   { id: "achievements", label: "Achievements" },
