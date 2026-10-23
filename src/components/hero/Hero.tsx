@@ -2,7 +2,7 @@ import { ArrowDown, FileText } from "lucide-react";
 import { site } from "@/content/site";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import MoleculeStatic from "./MoleculeStatic";
+import HeroVisual from "./HeroVisual";
 
 const legend = [
   { label: "Product", color: "bg-product" },
@@ -39,7 +39,7 @@ export default function Hero() {
         </div>
 
         <figure className="relative mx-auto aspect-square w-full max-w-[30rem]">
-          <MoleculeStatic />
+          <HeroVisual />
           <figcaption className="mt-2 text-center font-mono text-[11px] text-subtle">
             <span className="block">fig. 1, career as a molecule</span>
             <span className="mt-1.5 flex flex-wrap justify-center gap-x-4 gap-y-1">

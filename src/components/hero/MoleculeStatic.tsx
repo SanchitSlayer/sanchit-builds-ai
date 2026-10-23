@@ -4,12 +4,18 @@ const byId = Object.fromEntries(atoms.map((a) => [a.id, a]));
 
 // Flat drawing of the career molecule. Shown before the 3D scene loads,
 // and instead of it on low-end devices or when reduced motion is on.
-export default function MoleculeStatic() {
+// `decorative` hides it from screen readers when a parent already describes it.
+export default function MoleculeStatic({ decorative = false }: { decorative?: boolean }) {
   return (
     <svg
       viewBox="0 0 480 480"
-      role="img"
-      aria-label="Career map drawn as a molecule: OneMetric at the centre, bonded to the eKYC OCR tool, the intent analyzer, Inventive AI and the Placement Cell, with projects and leadership roles around them."
+      {...(decorative
+        ? { "aria-hidden": true }
+        : {
+            role: "img",
+            "aria-label":
+              "Career map drawn as a molecule: OneMetric at the centre, bonded to the eKYC OCR tool, the intent analyzer, Inventive AI and the Placement Cell, with projects and leadership roles around them.",
+          })}
       className="h-full w-full"
     >
       <g stroke="var(--color-line-strong)" strokeWidth="1.5">
