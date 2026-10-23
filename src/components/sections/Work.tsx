@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, Download } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { decks, featured, projects } from "@/content/work";
 import Tag from "@/components/ui/Tag";
 
@@ -44,7 +45,13 @@ export default function Work() {
               ))}
             </ul>
             <div className="mt-auto flex flex-wrap items-center gap-x-6 border-t border-line pt-5">
-              <span className="font-mono text-xs text-subtle">Full case study coming soon</span>
+              <Link
+                to={`/work/${f.slug}`}
+                className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium text-accent-strong"
+              >
+                Read the case study
+                <ArrowRight size={16} aria-hidden className="transition-transform group-hover:translate-x-1" />
+              </Link>
               {f.repo && (
                 <ExternalLink href={f.repo} label={`${f.title} code on GitHub`}>
                   Code <ArrowUpRight size={14} aria-hidden />

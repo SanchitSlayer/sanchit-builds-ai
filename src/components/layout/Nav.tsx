@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { sections, site } from "@/content/site";
@@ -29,8 +29,18 @@ export default function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // On case-study pages, section links point back to the home page.
-  const href = (id: string) => (onHome ? `#${id}` : `/#${id}`);
+  // On the home page, section links are plain anchors (native smooth scroll).
+  // On case-study pages they are router links back to that section of the home page.
+  const sectionLink = (id: string, className: string, children: ReactNode) =>
+    onHome ? (
+      <a href={`#${id}`} onClick={() => setOpen(false)} aria-current={active === id ? "true" : undefined} className={className}>
+        {children}
+      </a>
+    ) : (
+      <Link to={`/#${id}`} onClick={() => setOpen(false)} className={className}>
+        {children}
+      </Link>
+    );
 
   return (
     <header
@@ -48,15 +58,11 @@ export default function Nav() {
           <ul className="flex items-center gap-1">
             {sections.map((s) => (
               <li key={s.id}>
-                <a
-                  href={href(s.id)}
-                  aria-current={active === s.id ? "true" : undefined}
-                  className={`rounded-full px-3 py-2 text-sm transition-colors ${
-                    active === s.id ? "text-text" : "text-muted hover:text-text"
-                  }`}
-                >
-                  {s.label}
-                </a>
+                {sectionLink(
+                  s.id,
+                  `rounded-full px-3 py-2 text-sm transition-colors ${active === s.id ? "text-text" : "text-muted hover:text-text"}`,
+                  s.label,
+                )}
               </li>
             ))}
             <li className="ml-2">
@@ -90,13 +96,7 @@ export default function Nav() {
             <ul className="flex flex-col py-3">
               {sections.map((s) => (
                 <li key={s.id}>
-                  <a
-                    href={href(s.id)}
-                    onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center text-base text-muted hover:text-text"
-                  >
-                    {s.label}
-                  </a>
+                  {sectionLink(s.id, "flex min-h-11 items-center text-base text-muted hover:text-text", s.label)}
                 </li>
               ))}
               <li>

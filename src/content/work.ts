@@ -25,7 +25,7 @@ export const featured: Featured[] = [
     highlights: [
       "eKYC with a Pending, Verified, Rejected review flow",
       "Atomic transfers and HMAC-signed QR payments",
-      "Security review against the OWASP Top 10, 15+ API tests",
+      "Security review against the OWASP Top 10, 27 integration tests",
     ],
     stack: ["FastAPI", "PostgreSQL", "React", "TypeScript", "Tesseract OCR"],
     repo: "https://github.com/SanchitSlayer/digital-wallet-ekyc",

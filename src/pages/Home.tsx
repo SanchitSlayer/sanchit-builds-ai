@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { Helmet } from "react-helmet-async";
 import Hero from "@/components/hero/Hero";
 import ProofStrip from "@/components/hero/ProofStrip";
 import Section from "@/components/ui/Section";
@@ -8,7 +9,7 @@ import Work from "@/components/sections/Work";
 import Experience from "@/components/sections/Experience";
 import Achievements from "@/components/sections/Achievements";
 import Contact from "@/components/sections/Contact";
-import { sections } from "@/content/site";
+import { site, sections } from "@/content/site";
 
 // Heading and one-line intro for each section, keyed by the ids in content/site.ts.
 const content: Record<string, { title: string; intro: string; Body: ComponentType }> = {
@@ -47,6 +48,10 @@ const content: Record<string, { title: string; intro: string; Body: ComponentTyp
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>{site.title}</title>
+        <meta name="description" content={site.description} />
+      </Helmet>
       <Hero />
       <ProofStrip />
       {sections.map(({ id }, i) => {
